@@ -1,1 +1,48 @@
-# marathons-bonus
+## Rock and Roll Marathons Bonus Questions
+
+In these bonus questions, you'll get to explore some additional features of Excel.
+
+1. First, notice that when you imported the data, it came in as an [Excel table](https://support.microsoft.com/en-us/office/create-and-format-tables-e81aa349-b006-4f8a-9806-5af9df0ac664). Excel tables make it easier to perform analysis and write functions on datasets. If you have not already done so, rewrite your formulas for the fastest, slowest, median, and mean time using [Structured References](https://support.microsoft.com/en-us/office/using-structured-references-with-excel-tables-f5ed2452-2337-4f71-bed3-c8ae6d2b276e). This means that you should be referring to the table names and column names rather than using explicit cell references (rows and columns).
+
+2. The [INDIRECT](https://support.microsoft.com/en-au/office/indirect-function-474b3a3a-8a26-4f44-b491-92b6306fa261) function allows you to make references using strings. If you have not already done so, redo your calculations for Question 2 so that you only need to write one function per year which can be copied down to calculate values for all years.
+
+3. When performing calculations or making comparisons to a constant value, you can often improve the readability of your spreadsheet by using named cells. You can read more about working with named cells [here](https://support.microsoft.com/en-au/office/define-and-use-names-in-formulas-4d0f13ac-53b7-422e-afd2-abd7ff379c64). If you have not already done so, create a cell which contains Oprah's time and name this cell "OprahTime". Reference this cell by name in your calculations on Question 3.
+
+4. Working with Excel tables make certain operations easy to accomplish. For example, let's say we wanted to see if there were any duplicate names in the 2016 marathon. Follow these steps to determine this.  
+a. First, create a column that counts how many times a name appears in the Name column of the 2016 marathons table. (Hint: Use the COUNTIF function). Notice how when you write your function, it automatically populates the entire column of the teable.
+b. Next, you can use this new column to filter the table down to just the rows with duplicates.
+c. From what you can see, do any of these look like data errors or are they all legitimate duplicate names?  
+d. Now, reset the filter so that you are viewing the entire table again.  
+e. Let's use another approach to looking for potential duplicates - [conditional formatting](https://support.microsoft.com/en-us/office/use-conditional-formatting-to-highlight-information-fed60dfa-1d3f-4e13-9ecb-f1951ff89d7f). Highlight the Name column of your table. Under the Home tab, select Conditional Formatting -> Highlight Cell Rules -> Duplicate Values. This will highlight any rows which are duplicate names.  
+f. At this point you could scroll through the table to find duplicates, but with a few thousand rows, this is cumbersome. Instead, we can use the filter feature of the table. Click the filter option on the Name column and select "Filter by Color" and utilize the "Filter by Cell Color" to retrieve the duplicate rows.
+
+5. Let's make a visualization to see the overall distribution of finish times during the 2016 marathon.  
+a. Start by creating a new column which contains the finish time of each runner in minutes. Hint: This can be done using the HOUR, MINUTE, AND SECOND functions.  
+b. Now, using this column, create a [histogram](https://www.mathsisfun.com/data/histograms.html). You can create such a chart by going to the Insert tab, going to the charts section and choosing histogram under the "Insert Statistic Chart" button. (See [this page](https://support.microsoft.com/en-us/topic/create-a-histogram-in-excel-a15d4de8-a432-72cd-9434-1a7f3e88698e) for more information).  
+c. What do you notice from this histogram?  
+
+ 6. You've seen from the previous calculations that marathon times were slower for 2017 compared to 2016, but now let's see if the times of individual runners were slower.   
+ a. Make a new sheet, "Year_to_Year_Comparison".   
+ b. In this sheet, create a table that contains the name of each runner who participated in the 2016 full marathon.   
+ c. In the second column, put the finish times for those runners for the 2016 marathon. Hint: you may want to use a lookup function such as VLOOKUP or [XLOOKUP](https://support.microsoft.com/en-us/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929) to pull these numbers.
+ d. Add a third column that shows the 2017 time for runners that also participated in the 2017 marathon.  
+ e. Filter the data down to just the rows for runners who participated both in 2016 and 2017.    
+ f. What percentage of runners who participated in both the 2016 and 2017 marathons had a slower finish time in 2017 compared to 2016?  
+ g. Who had the largest improvement in time from 2016 to 2017? Who had the biggest drop off?  
+ h. Build off of what you did to pull the 2017 times to determine how many runners competed in every year from 2016 through 2019. Out of these runners, which had the largest improvement in finish time from 2016 to 2019?
+
+ ## Stretch Problems - Power Query
+
+The following questions explore the [Power Query tool](https://support.microsoft.com/en-us/office/about-power-query-in-excel-7104fbee-9e62-4cb9-a02e-5bfb1a6c536a). Power Query allows you to perform powerful data manipulation tasks and to connect to external data sources within Excel. You've actually already used Power Query when you initially loaded in the table, but now you'll get to see other operations that you can do besides just loading data from an external source.
+
+ 1. Let's see another way that we can compare finish time for competitors across years. Our first goal will be to find the finish times for all competitors who competed both in 2016 and in 2017.  A good reference for the steps in this exercise is either the [Microsoft Support Documentation](https://support.microsoft.com/en-au/office/merge-queries-power-query-fd157620-5470-4c0f-b132-7ca2616d17f9) or this blog post: https://trumpexcel.com/merge-tables/   
+ a. Start by going to the Data Tab, selecting "Get Data", then "Combine Queries" and "Merge".  This should open a popup window.  
+ b. In this window, you can select the data for the 2016 marathons at the top and the 2017 marathons below.  Next, you'll need to select the kind of join to perform. We are looking for people who appear in both tables, so we want to do an Inner join. Finally, select the columns that we want to match. Once you've made these selections, click Okay. This should take you into the Power Query editor.  
+ c. Once in the PowerQuery editor, you can modify what the result of the merge looks like. Edit the results so that you are keeping only the Name of the competitor, their finish time in 2016 and their finish time in 2017. Rename the two time columns so that you know which came from which year. Once you are done, hit the "Close and Load" button to save the result to a new spreadsheet.  
+ d. Repeat the above steps to also bring in the 2018 and 2019 all into one table. You'll have to perform a total of 3 merges to get the final results. Note that you can also merge multiple tables within the Power Query Editor, so you can also try this by editing the query you already created and adding the new merges. Double-check the number of rows that you get compared to what you got in question 6. If they don't agree, figure out why.
+
+ 2. Using Power Query, find all runners who competed in the half marathon in 2016 and then the full marathon in 2017.
+
+ 3. How many runners competed in only 3 out of the 4 years? How many competed only once? Let's look at two ways to address these question. First, make a copy of your merge from before but change the type to FullOuter. This will keep all rows of each table, whether or not they have a match. Notice that when there is not a match, the column gets a null value. Once you have all 4 tables merged together, we can count the number of columns that are null. This can be done using the [Power Query M formula language](https://learn.microsoft.com/en-us/powerquery-m/). Specifically, the [List.NonNullCount](https://learn.microsoft.com/en-us/powerquery-m/list-nonnullcount) can complete this task. In the "Add Column" tab select "Custom Column". Write a formula that will count the number of non-null values across the times for all four years. Hint: you might want to see this message board post if you get stuck: https://community.powerbi.com/t5/Desktop/Count-non-blank-cells-across-a-range-of-columns/m-p/494271. Once you have your custom column created, you can go to the "Transform" tab and Group By your new column to see how many people appear in exactly 1 year, exactly 2 years, etc. See [this page](https://learn.microsoft.com/en-us/power-query/group-by) for more information about the Group By tool. What do you notice from the result of this query?
+ 
+ 4. A simpler approach would be to Append the tables instead of Merging them. See [Append Queries](https://support.microsoft.com/en-au/office/append-queries-power-query-e42ca582-4f62-4a43-b37f-99e2b2a4813a). Append the tables for all 4 years of the marathon. Once you have your tables merged, you can Group By the runner name and count to get the number of times each name appears. Finally, do another group by to count the number of times each count appears. Do the results from this operation match the previous method? What might explain any differences you see? What limitations do we have to the approach that we are taking?
